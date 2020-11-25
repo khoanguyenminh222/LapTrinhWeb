@@ -1,0 +1,123 @@
+/* Login Register */
+form {
+    position: relative;
+    z-index: 1;
+    background: #FFFFFF;
+    max-width: 360px;
+    margin: 0 auto 100px;
+    padding: 45px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+.input-login {
+    font-family: "Roboto", sans-serif;
+    outline: 0;
+    background: #f2f2f2;
+    width: 100%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+.input-login:hover{
+    background: #b0b3b0;
+}
+.login-page, .register-page{
+    width: 360px;
+    padding: 8% 0 0;
+    margin: auto;
+}
+#button-login{
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #50b154;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    cursor: pointer;
+}
+table{
+    width: 100%;
+}
+#button-login:hover{
+    background: #3d9f41;
+}
+/*----------------------------------------------------------------------------------------------------*/
+/* Home */
+.container{
+    margin-top:20px;
+}
+.card{
+    box-shadow: 0px 4px 8px 0 rgba(0,0,0,0.2);
+    width: 250px;
+    height: 250px;
+}
+.card:hover{
+    box-shadow: 0px 16px 16px 0 rgba(0,0,0,0.2);
+}
+.image {
+    background-color: #ffffff;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 75%;
+    width: 100%;
+}
+.card-body{
+    height: 25%;
+    width: 100%;
+    background: #50b154;
+    padding: 5px;
+}
+.card-title{
+    margin-bottom: 0;
+}
+/*----------------------------------------------------------------------------------------------------*/
+/* Stream_Class */
+.banner-image{
+    background-color: #32ab71;
+    color: #ffffff;
+    height: 300px;
+    border-radius:10px;
+    font-size:30px;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0px 0px 20px;
+}
+.card-stream{
+    border-radius: 20px;
+    box-shadow: 0px 4px 8px 0 rgba(0,0,0,0.2);
+    position: relative;
+}
+#textarea{
+    background: #f7f8f9;
+    border: 0;
+    width: 90%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0px auto;
+}
+#textarea:hover{
+    background: #f1eded;
+}
+#btn-send{
+    width: 10%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+.input-stream{
+    border-radius: 20px;
+}
+.input-stream:focus{
+    border:  #1e8d3e;
+}
