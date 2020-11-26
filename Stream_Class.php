@@ -9,9 +9,12 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="Style.css" />
 </head>
+<?php
+session_start();
+?>
 <body>
 <nav class="navbar navbar-expand-md bg-light navbar-light">
-    <a class="navbar-brand" href="Home.html">Lớp học</a>
+    <a class="navbar-brand" href="Home.php">Lớp học</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -30,7 +33,7 @@
                 <a class="nav-link" href="#">Grades</a>
             </li>
             <li class="nav-item">
-                <p class="navbar-brand" style="margin-left: 0px" >Tên người dùng</p>
+                <p class="navbar-brand"  ><?php echo $_SESSION["username"] ?></p>
             </li>
         </ul>
     </div>
