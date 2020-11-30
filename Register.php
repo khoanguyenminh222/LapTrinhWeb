@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="Style.css" />
 </head>
 <?php
+    include "database.php";
+    $conn=ConnectDB();
+    $sql="Select Email from user";
+    $result = $conn->query($sql);
     $success='';
     $error ='';
     $username = '';
@@ -18,44 +22,43 @@
     $date ='';
     $email='';
     $phone='';
-    if(isset($_POST['user']) && isset($_POST['pass']) && isset($_POST['name'])
-        && isset($_POST['date']) && isset($_POST['mail']) && isset($_POST['phone'])){
-        $username = $_POST['user'];
-        $pass=$_POST['pass'];
-        $hoTen =$_POST['name'];
-        $date=$_POST['date'];
-        $email=$_POST['mail'];
-        $phone=$_POST['phone'];
-        if(empty($username)){
-            $error='Hãy nhập username';
-        }
-        else if(intval($pass)<6){
-            $error='Hãy nhập password trên 6 kí tự';
-        }
-        else if(empty($pass)){
-            $error='Hãy nhập password';
-        }
-        else if(empty($hoTen)){
-            $error='Hãy nhập Họ Tên';
-        }
-        else if(empty($date)){
-            $error='Hãy chọn ngày sinh';
-        }
-        else if(empty($email)){
-            $error='Hãy nhập email';
-        }
-        else if(empty($phone)){
-            $error='Hãy nhập số điện thoại';
-        }
-        else{
-            include 'database.php';
-            $conn = ConnectDB();
-            $sql = "INSERT INTO user (username, password, HoTen, NgaySinh, Email, SoDienThoai, ChucVu)
-                    VALUES ('$username', '$pass', '$hoTen', '$date','$email', '$phone', 'HocVien')";
-            if(mysqli_query($conn,$sql)){
-                $success="Đăng kí thành công";
-            }else{
-                echo "Error:".$sql."<br>".mysqli_error($conn);
+    if ($result->num_rows > 0) {
+    // output data of each row
+        while ($row = $result->fetch_assoc()) {
+            if (isset($_POST['user']) && isset($_POST['pass']) && isset($_POST['name'])
+                && isset($_POST['date']) && isset($_POST['mail']) && isset($_POST['phone'])) {
+                $username = $_POST['user'];
+                $pass = $_POST['pass'];
+                $hoTen = $_POST['name'];
+                $date = $_POST['date'];
+                $email = $_POST['mail'];
+                $phone = $_POST['phone'];
+                if (empty($username)) {
+                    $error = 'Hãy nhập username';
+                } else if (intval($pass) < 6) {
+                    $error = 'Hãy nhập password trên 6 kí tự';
+                } else if (empty($pass)) {
+                    $error = 'Hãy nhập password';
+                } else if (empty($hoTen)) {
+                    $error = 'Hãy nhập Họ Tên';
+                } else if (empty($date)) {
+                    $error = 'Hãy chọn ngày sinh';
+                } else if (empty($email)) {
+                    $error = 'Hãy nhập email';
+                } else if ($email === $row['Email']) {
+                    $error='Email đã tồn tại';
+                } else if (empty($phone)) {
+                    $error = 'Hãy nhập số điện thoại';
+                } else {
+
+                    $sql = "INSERT INTO user (username, password, HoTen, NgaySinh, Email, SoDienThoai, ChucVu)
+                        VALUES ('$username', '$pass', '$hoTen', '$date','$email', '$phone', 'HocVien')";
+                    if (mysqli_query($conn, $sql)) {
+                        $success = "Đăng kí thành công";
+                    } else {
+                        echo "Error:" . $sql . "<br>" . mysqli_error($conn);
+                    }
+                }
             }
         }
     }

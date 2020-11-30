@@ -13,13 +13,13 @@
 session_start();
 ?>
 <?php
-    $username = "";
+    $email = "";
     $pass = "";
-    if(isset($_POST['username']) && isset($_POST['pass'])){
-        $username=$_POST['username'];
+    if(isset($_POST['email']) && isset($_POST['pass'])){
+        $email=$_POST['email'];
         $pass=$_POST['pass'];
-        if(empty($username)){
-            $error='Hãy nhập username';
+        if(empty($email)){
+            $error='Hãy nhập email';
         }
         else if(empty($pass)){
             $error='Hãy nhập password';
@@ -27,17 +27,17 @@ session_start();
         else{
             include "database.php";
             $conn=ConnectDB();
-            $sql="Select username, password, ChucVu from user";
+            $sql="Select username, password, Email, ChucVu from user";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 // output data of each row
                 while ($row = $result->fetch_assoc()) {
-                    if ($username === $row['username'] && $pass === $row['password']) {
-                        $_SESSION["username"] = $username;
+                    if ($email === $row['Email'] && $pass === $row['password']) {
+                        $_SESSION["username"] = $row['username'];
                         $_SESSION["ChucVu"] = $row['ChucVu'];
                         header('Location: http://localhost:8899/DoAn/code/Home.php', true, 301);
-                    } else if ($username != $row['username'] || $pass!=$row['password']) {
-                        $error = "Sai username hoặc password";
+                    } else if ($email != $row['Email'] || $pass!=$row['password']) {
+                        $error = "Sai email hoặc password";
                     }
                 }
             }
@@ -50,7 +50,7 @@ session_start();
         <h2>LỚP HỌC CLASSROOM</h2>
         <table>
             <tr>
-                <td><input class="input-login" id="id_username" value="<?= $username?>" name="username" type="text" placeholder="Enter username"/></td>
+                <td><input class="input-login" id="id_username" value="<?= $email?>" name="email" type="text" placeholder="Enter email"/></td>
             </tr>
             <tr>
                 <td><input class="input-login" value="<?= $pass?>" name="pass" type="password" placeholder="Enter password"/></td>
@@ -69,6 +69,9 @@ session_start();
             </tr>
             <tr>
                 <td><p class="message">Not registered? <a href="Register.php">Create an account</a></p></td>
+            </tr>
+            <tr>
+                <td><a href="forgot.php">Forgot a password</a></td>
             </tr>
         </table>
     </form>

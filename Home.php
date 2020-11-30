@@ -30,14 +30,14 @@ session_start();
 
                 }else if($_SESSION["ChucVu"]==="GiaoVien"){
                     echo "<li class='nav-item'>";
-                    echo "<a class='nav-link' href='#'>Tạo lớp học</a>";
+                    echo "<a class='nav-link' href='AddClass.php'>Tạo lớp học</a>";
                     echo "</li>";
                 }else if($_SESSION["ChucVu"]==="Admin") {
                     echo "<li class='nav-item'>";
                     echo "<a class='nav-link' href='PhanQuyen.php'>Phân quyền</a>";
                     echo "</li>";
                     echo "<li class='nav-item'>";
-                    echo "<a class='nav-link' href='#'>Tạo lớp học</a>";
+                    echo "<a class='nav-link' href='AddClass.php'>Tạo lớp học</a>";
                     echo "</li>";
                 }
             ?>

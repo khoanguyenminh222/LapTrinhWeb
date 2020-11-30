@@ -9,20 +9,64 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <?php
-include "database.php";
-$conn=ConnectDB();
-$sql="Select * from user";
-$result = $conn->query($sql);
+session_start();
+?>
+<?php
+    include "database.php";
+    $conn=ConnectDB();
+    $sql="Select * from user";
+    $result = $conn->query($sql);
+    $user='';
+    $display_username = filter_input(INPUT_GET, 'user', FILTER_SANITIZE_EMAIL);
 
 ?>
 <body>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <h3 class="text-center text-secondary mt-5 mb-3">Reset Password</h3>
+            <?php
+            if(!empty($error)){
+                echo "<div class='alert alert-danger'>$error</div>";
+            }else{
+                ?>
+                <form novalidate method="post" action="" class="border rounded w-100 mb-5 mx-auto px-3 pt-3 bg-light">
+                    <div class="form-group">
+                        <label for="user">username</label>
+                        <input readonly value="<?= $_SESSION["user"] ?>" name="user" id="user" type="text" class="form-control" placeholder="username">
+                    </div>
+                    <div class="form-group">
+                        <label for="pass">Password</label>
+                        <input readonly name="pass" required class="form-control" type="password" placeholder="Password" id="pass">
+                    </div>
+                    <div class="form-group">
+                        <label for="pass2">Confirm Password</label>
+                        <input name="pass-confirm" required class="form-control" type="password" placeholder="Confirm Password" id="pass2">
+                        <div class="invalid-feedback">Password is not valid.</div>
+                    </div>
+                    <div class="form-group">
+                        <?php
+                        if(!empty($post_error)){
+                            echo "<div class='alert alert-danger'>$post_error</div>";
+                        }
+                        ?>
+                        <button class="btn btn-success px-5">Change password</button>
+                    </div>
+                </form>
+                <?php
+            }
+            ?>
+        </div>
+    </div>
+</div>
+<!--
 <div>
     <form action="" method="post">
         <h2>Edit</h2>
         <table>
             <tr>
                 <td><label>username</label></td>
-                <td><input class="input-login" name="user" type="text" placeholder="Enter username"/></td>
+                <td><input readonly value="<?= $display_username ?>" class="input-login" name="user" type="text" placeholder="Enter username"/></td>
             </tr>
             <tr>
                 <td><label>password</label></td>
@@ -37,8 +81,8 @@ $result = $conn->query($sql);
                 <td><input class="input-login" name="date" type="date" placeholder="22/02/2000"/></td>
             </tr>
             <tr>
-                <td><label>Email</label></td>
-                <td><input class="input-login" name="mail" type="text" placeholder="Enter email address"/></td>
+                <td><label>user</label></td>
+                <td><input class="input-login" name="mail" type="text" placeholder="Enter user address"/></td>
             </tr>
             <tr>
                 <td><label>SoDienThoai</label></td>
@@ -73,5 +117,6 @@ $result = $conn->query($sql);
     </form>
 
 </div>
+-->
 </body>
 </html>
